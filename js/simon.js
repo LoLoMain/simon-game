@@ -21,6 +21,8 @@ console.log('Starting the Game!!!');
 
 this.addColor();
 
+this.showSequence();
+
 };
 // Chooses one of the 4 colors at random and adds to the sequence
 SimonGame.prototype.addColor = function(){
@@ -30,14 +32,42 @@ SimonGame.prototype.addColor = function(){
 };
 
 SimonGame.prototype.showSequence = function (){
+var ourSequence = this.sequence;
+
+ var  i = 0;
+
+var intervalID = setInterval(function(){
+  if( i > ourSequence.length) {
+    clearInterval(intervalID);
+    return;
+  }
+
+
   // turns on the light by adding class - lightOn
-  $( '#' + this.sequence[0]).addClass('lightOn');
+  $( '#' + ourSequence[i]).addClass('lightOn');
   // $('#red').addClass('lightOn');
 
 
   setTimeout(function (){
     $('button').removeClass('lightOn');
+
   }, 700);
+
+i+=1;
+console.log(i);
+
+},1500);
+
 };
+
+
+SimonGame.prototype.nextRound = function() {
+this.addColor();
+this.showSequence();
+this.userClickCount = 0;
+
+
+$ ('counter').html(this.round);
+this.round +=1;
 
 };
