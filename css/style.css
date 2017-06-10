@@ -19,6 +19,10 @@ section {
   width: 620px;
 }
 
+section.blocked{
+  pointer-events: none;
+}
+
 
 
 button {

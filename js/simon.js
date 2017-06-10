@@ -2,7 +2,7 @@
 
 // Constructor Function Below
 function SimonGame () {
-this.colors = ['red', 'green', 'blue', 'yellow']
+this.colors = ['red', 'green', 'blue', 'yellow'];
 
 // our current sequence
 this.sequence = [];
@@ -36,9 +36,12 @@ var ourSequence = this.sequence;
 
  var  i = 0;
 
+$('#buttons-container').addClass('blocked');
 var intervalID = setInterval(function(){
+
   if( i > ourSequence.length) {
     clearInterval(intervalID);
+    $('#buttons-container').removeClass('blocked');
     return;
   }
 
@@ -67,7 +70,17 @@ this.showSequence();
 this.userClickCount = 0;
 
 
-$ ('counter').html(this.round);
+$ ('#counter').html(this.round);
 this.round +=1;
 
+};
+
+
+SimonGame.prototype.gameOver = function() {
+   this.sequence =[];
+   this.userClickCount =0;
+   this.round = 1;
+   $ ('#counter').html(0);
+
+   this.startGame();
 };
